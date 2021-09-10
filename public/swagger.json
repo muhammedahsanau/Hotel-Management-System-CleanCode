@@ -6,18 +6,21 @@
 		"requestBodies": {},
 		"responses": {},
 		"schemas": {
-			"SaveUpdateResWaiter": {
+			"SaveUpdateResItem": {
 				"properties": {
 					"_id": {
 						"type": "string"
 					},
-					"waiter_name": {
+					"item_name": {
 						"type": "string"
 					},
-					"waiter_email": {
+					"item_price": {
 						"type": "string"
 					},
-					"waiter_password": {
+					"item_size": {
+						"type": "string"
+					},
+					"item_type": {
 						"type": "string"
 					},
 					"createdAt": {
@@ -29,27 +32,100 @@
 				},
 				"required": [
 					"_id",
-					"waiter_name",
-					"waiter_email",
-					"waiter_password",
+					"item_name",
+					"item_price",
+					"item_size",
+					"item_type",
 					"createdAt",
 					"updatedAt"
 				],
 				"type": "object",
 				"additionalProperties": false
 			},
-			"GetWaiter": {
+			"GetItem": {
 				"properties": {
-					"waiter_email": {
-						"type": "string"
-					},
-					"waiter_password": {
+					"id": {
 						"type": "string"
 					}
 				},
 				"required": [
-					"waiter_email",
-					"waiter_password"
+					"id"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"getItemPrice": {
+				"properties": {
+					"item_price": {
+						"type": "string"
+					}
+				},
+				"required": [
+					"item_price"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"SaveReqItem": {
+				"properties": {
+					"item_name": {
+						"type": "string"
+					},
+					"item_price": {
+						"type": "string"
+					},
+					"item_size": {
+						"type": "string"
+					},
+					"item_type": {
+						"type": "string"
+					}
+				},
+				"required": [
+					"item_name",
+					"item_price",
+					"item_size",
+					"item_type"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"UpdateReqItem": {
+				"properties": {
+					"_id": {
+						"type": "string"
+					},
+					"item_name": {
+						"type": "string"
+					},
+					"item_price": {
+						"type": "string"
+					},
+					"item_size": {
+						"type": "string"
+					},
+					"item_type": {
+						"type": "string"
+					}
+				},
+				"required": [
+					"_id",
+					"item_name",
+					"item_price",
+					"item_size",
+					"item_type"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"DeleteItem": {
+				"properties": {
+					"id": {
+						"type": "string"
+					}
+				},
+				"required": [
+					"id"
 				],
 				"type": "object",
 				"additionalProperties": false
@@ -213,21 +289,45 @@
 				"type": "object",
 				"additionalProperties": false
 			},
-			"SaveUpdateResItem": {
+			"SearchReqOrder": {
+				"properties": {
+					"item": {
+						"items": {
+							"type": "string"
+						},
+						"type": "array"
+					}
+				},
+				"required": [
+					"item"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"GetOrderByStatus": {
+				"properties": {
+					"o_status": {
+						"type": "string"
+					}
+				},
+				"required": [
+					"o_status"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"SaveUpdateResWaiter": {
 				"properties": {
 					"_id": {
 						"type": "string"
 					},
-					"item_name": {
+					"waiter_name": {
 						"type": "string"
 					},
-					"item_price": {
+					"waiter_email": {
 						"type": "string"
 					},
-					"item_size": {
-						"type": "string"
-					},
-					"item_type": {
+					"waiter_password": {
 						"type": "string"
 					},
 					"createdAt": {
@@ -239,36 +339,47 @@
 				},
 				"required": [
 					"_id",
-					"item_name",
-					"item_price",
-					"item_size",
-					"item_type",
+					"waiter_name",
+					"waiter_email",
+					"waiter_password",
 					"createdAt",
 					"updatedAt"
 				],
 				"type": "object",
 				"additionalProperties": false
 			},
-			"GetItem": {
+			"GetWaiter": {
 				"properties": {
-					"id": {
+					"waiter_email": {
+						"type": "string"
+					},
+					"waiter_password": {
 						"type": "string"
 					}
 				},
 				"required": [
-					"id"
+					"waiter_email",
+					"waiter_password"
 				],
 				"type": "object",
 				"additionalProperties": false
 			},
-			"getItemPrice": {
+			"SaveReqWaiter": {
 				"properties": {
-					"item_price": {
+					"waiter_name": {
+						"type": "string"
+					},
+					"waiter_email": {
+						"type": "string"
+					},
+					"waiter_password": {
 						"type": "string"
 					}
 				},
 				"required": [
-					"item_price"
+					"waiter_name",
+					"waiter_email",
+					"waiter_password"
 				],
 				"type": "object",
 				"additionalProperties": false
@@ -340,129 +451,6 @@
 				],
 				"type": "object",
 				"additionalProperties": false
-			},
-			"SaveReqWaiter": {
-				"properties": {
-					"waiter_name": {
-						"type": "string"
-					},
-					"waiter_email": {
-						"type": "string"
-					},
-					"waiter_password": {
-						"type": "string"
-					}
-				},
-				"required": [
-					"waiter_name",
-					"waiter_email",
-					"waiter_password"
-				],
-				"type": "object",
-				"additionalProperties": false
-			},
-			"DeleteOrder": {
-				"properties": {
-					"id": {
-						"type": "string"
-					}
-				},
-				"required": [
-					"id"
-				],
-				"type": "object",
-				"additionalProperties": false
-			},
-			"SearchReqOrder": {
-				"properties": {
-					"item": {
-						"items": {
-							"type": "string"
-						},
-						"type": "array"
-					}
-				},
-				"required": [
-					"item"
-				],
-				"type": "object",
-				"additionalProperties": false
-			},
-			"GetOrderByStatus": {
-				"properties": {
-					"o_status": {
-						"type": "string"
-					}
-				},
-				"required": [
-					"o_status"
-				],
-				"type": "object",
-				"additionalProperties": false
-			},
-			"SaveReqItem": {
-				"properties": {
-					"item_name": {
-						"type": "string"
-					},
-					"item_price": {
-						"type": "string"
-					},
-					"item_size": {
-						"type": "string"
-					},
-					"item_type": {
-						"type": "string"
-					}
-				},
-				"required": [
-					"item_name",
-					"item_price",
-					"item_size",
-					"item_type"
-				],
-				"type": "object",
-				"additionalProperties": false
-			},
-			"UpdateReqItem": {
-				"properties": {
-					"_id": {
-						"type": "string"
-					},
-					"item_name": {
-						"type": "string"
-					},
-					"item_price": {
-						"type": "string"
-					},
-					"item_size": {
-						"type": "string"
-					},
-					"item_type": {
-						"type": "string"
-					}
-				},
-				"required": [
-					"_id",
-					"item_name",
-					"item_price",
-					"item_size",
-					"item_type"
-				],
-				"type": "object",
-				"additionalProperties": false
-			},
-			"DeleteItem": {
-				"properties": {
-					"id": {
-						"type": "string"
-					}
-				},
-				"required": [
-					"id"
-				],
-				"type": "object",
-				"additionalProperties": false
 			}
 		},
 		"securitySchemes": {
@@ -485,6 +473,545 @@
 	},
 	"openapi": "3.0.0",
 	"paths": {
+		"/Items/getItemByID": {
+			"post": {
+				"operationId": "GetItem",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/SaveUpdateResItem"
+								}
+							}
+						}
+					}
+				},
+				"summary": "Get Single Item By Item Id => Only Login Waiter is allowed",
+				"tags": [
+					"PMS - Items"
+				],
+				"security": [
+					{
+						"api_key": []
+					}
+				],
+				"parameters": [],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/GetItem"
+							}
+						}
+					}
+				}
+			}
+		},
+		"/Items/getMenu": {
+			"post": {
+				"operationId": "GetItemList",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"items": {
+										"$ref": "#/components/schemas/SaveUpdateResItem"
+									},
+									"type": "array"
+								}
+							}
+						}
+					}
+				},
+				"summary": "Get list of all the items => anyone is allowed",
+				"tags": [
+					"PMS - Items"
+				],
+				"security": [
+					{
+						"api_key": []
+					}
+				],
+				"parameters": []
+			}
+		},
+		"/Items/getItemsbyPrice": {
+			"post": {
+				"operationId": "GetItemByPrice",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"items": {
+										"$ref": "#/components/schemas/SaveUpdateResItem"
+									},
+									"type": "array"
+								}
+							}
+						}
+					}
+				},
+				"summary": "Get list of all the items with spacific price=> anyone is allowed",
+				"tags": [
+					"PMS - Items"
+				],
+				"security": [
+					{
+						"api_key": []
+					}
+				],
+				"parameters": [],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/getItemPrice"
+							}
+						}
+					}
+				}
+			}
+		},
+		"/Items/saveItemInMenu": {
+			"post": {
+				"operationId": "SaveItem",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/SaveUpdateResItem"
+								}
+							}
+						}
+					}
+				},
+				"summary": "Get Single Item By Item Id => Only Login Waiter is allowed",
+				"tags": [
+					"PMS - Items"
+				],
+				"security": [
+					{
+						"api_key": []
+					}
+				],
+				"parameters": [],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/SaveReqItem"
+							}
+						}
+					}
+				}
+			}
+		},
+		"/Items/updateItemInMenu": {
+			"put": {
+				"operationId": "UpdateItem",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/SaveUpdateResItem"
+								}
+							}
+						}
+					}
+				},
+				"summary": "Get Single Item By Item Id => Only Login Waiter is allowed",
+				"tags": [
+					"PMS - Items"
+				],
+				"security": [
+					{
+						"api_key": []
+					}
+				],
+				"parameters": [],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/UpdateReqItem"
+							}
+						}
+					}
+				}
+			}
+		},
+		"/Items/deleteItem": {
+			"delete": {
+				"operationId": "DeletItem",
+				"responses": {
+					"200": {
+						"description": "product deleted",
+						"content": {
+							"application/json": {
+								"schema": {}
+							}
+						}
+					}
+				},
+				"summary": "Get Single Item By Item Id => Only Login Waiter is allowed",
+				"tags": [
+					"PMS - Items"
+				],
+				"security": [
+					{
+						"api_key": []
+					}
+				],
+				"parameters": [],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/DeleteItem"
+							}
+						}
+					}
+				}
+			}
+		},
+		"/orders/getorderById": {
+			"post": {
+				"operationId": "Getorder",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/SaveUpdateResOrder"
+								}
+							}
+						}
+					}
+				},
+				"summary": "Get Single Order by order id => Only Login Waiter is allowed",
+				"tags": [
+					"PMS - Orders"
+				],
+				"security": [
+					{
+						"api_key": []
+					}
+				],
+				"parameters": [],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/GetOrder"
+							}
+						}
+					}
+				}
+			}
+		},
+		"/orders/PlaceNewOrder": {
+			"post": {
+				"operationId": "Saveorder",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/SaveUpdateResOrder"
+								}
+							}
+						}
+					}
+				},
+				"summary": "Take order from the customer => Only Login Waiter is allowed",
+				"tags": [
+					"PMS - Orders"
+				],
+				"security": [
+					{
+						"api_key": []
+					}
+				],
+				"parameters": [],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/SaveReqOrder"
+							}
+						}
+					}
+				}
+			}
+		},
+		"/orders/getMyOrderlistByWaiterId": {
+			"post": {
+				"operationId": "GetorderListByWaiterId",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"items": {
+										"$ref": "#/components/schemas/SaveUpdateResOrder"
+									},
+									"type": "array"
+								}
+							}
+						}
+					}
+				},
+				"summary": "Get All the orders taken by current waiter => Only Login Waiter is allowed",
+				"tags": [
+					"PMS - Orders"
+				],
+				"security": [
+					{
+						"api_key": []
+					}
+				],
+				"parameters": []
+			}
+		},
+		"/orders/updateorder": {
+			"put": {
+				"operationId": "UpdateOrder",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/SaveUpdateResOrder"
+								}
+							}
+						}
+					}
+				},
+				"summary": "Update Order by order Id => Only Login Waiter is allowed",
+				"tags": [
+					"PMS - Orders"
+				],
+				"security": [
+					{
+						"api_key": []
+					}
+				],
+				"parameters": [],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/UpdateReqOrder"
+							}
+						}
+					}
+				}
+			}
+		},
+		"/orders/updateOrderToDelivered": {
+			"put": {
+				"operationId": "UpdateOrderToDelivered",
+				"responses": {
+					"200": {
+						"description": "product updated",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/IORDER"
+								}
+							}
+						}
+					}
+				},
+				"summary": "ordate order status to Delivered => Only Login Waiter is allowed",
+				"tags": [
+					"PMS - Orders"
+				],
+				"security": [
+					{
+						"api_key": []
+					}
+				],
+				"parameters": [],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/updateOrder_readyOrDelivered"
+							}
+						}
+					}
+				}
+			}
+		},
+		"/orders/updateOrderToReady": {
+			"put": {
+				"operationId": "UpdateOrderToReady",
+				"responses": {
+					"200": {
+						"description": "product updated",
+						"content": {
+							"application/json": {
+								"schema": {}
+							}
+						}
+					}
+				},
+				"summary": "Update order to ready => Only Login admin is allowed",
+				"tags": [
+					"PMS - Orders"
+				],
+				"security": [
+					{
+						"api_key": []
+					}
+				],
+				"parameters": [],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/updateOrder_readyOrDelivered"
+							}
+						}
+					}
+				}
+			}
+		},
+		"/orders/getorderlist": {
+			"post": {
+				"operationId": "GetorderList",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"items": {
+										"$ref": "#/components/schemas/SaveUpdateResOrder"
+									},
+									"type": "array"
+								}
+							}
+						}
+					}
+				},
+				"summary": "Get list of all the orders => Only Login admin is allowed",
+				"tags": [
+					"PMS - Orders"
+				],
+				"security": [
+					{
+						"api_key": []
+					}
+				],
+				"parameters": []
+			}
+		},
+		"/orders/getorderbyItemID": {
+			"post": {
+				"operationId": "SearchorderByproduct",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"items": {
+										"$ref": "#/components/schemas/SaveUpdateResOrder"
+									},
+									"type": "array"
+								}
+							}
+						}
+					}
+				},
+				"summary": "Get all the orders contain certain item => Only Login admin is allowed",
+				"tags": [
+					"PMS - Orders"
+				],
+				"security": [
+					{
+						"api_key": []
+					}
+				],
+				"parameters": [],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/SearchReqOrder"
+							}
+						}
+					}
+				}
+			}
+		},
+		"/orders/getOrderByStatus": {
+			"post": {
+				"operationId": "GetorderByStatus",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"items": {
+										"$ref": "#/components/schemas/SaveUpdateResOrder"
+									},
+									"type": "array"
+								}
+							}
+						}
+					}
+				},
+				"summary": "Get Single Item By Item Id => Only Login Waiter is allowed",
+				"tags": [
+					"PMS - Orders"
+				],
+				"security": [
+					{
+						"api_key": []
+					}
+				],
+				"parameters": [],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/GetOrderByStatus"
+							}
+						}
+					}
+				}
+			}
+		},
 		"/waiter/loginwaiter": {
 			"post": {
 				"operationId": "Authwaiter",
@@ -518,22 +1045,22 @@
 				}
 			}
 		},
-		"/waiter/getorderById": {
+		"/waiter/Registerwaiter": {
 			"post": {
-				"operationId": "Getorder",
+				"operationId": "SaveWaiter",
 				"responses": {
 					"200": {
 						"description": "Ok",
 						"content": {
 							"application/json": {
 								"schema": {
-									"$ref": "#/components/schemas/SaveUpdateResOrder"
+									"$ref": "#/components/schemas/SaveUpdateResWaiter"
 								}
 							}
 						}
 					}
 				},
-				"summary": "Get Single Order by order id => Only Login Waiter is allowed",
+				"summary": "Register new waiter => Only Login admin is allowed",
 				"tags": [
 					"PMS - Waiter"
 				],
@@ -548,289 +1075,7 @@
 					"content": {
 						"application/json": {
 							"schema": {
-								"$ref": "#/components/schemas/GetOrder"
-							}
-						}
-					}
-				}
-			}
-		},
-		"/waiter/PlaceNewOrder": {
-			"post": {
-				"operationId": "Saveorder",
-				"responses": {
-					"200": {
-						"description": "Ok",
-						"content": {
-							"application/json": {
-								"schema": {
-									"$ref": "#/components/schemas/SaveUpdateResOrder"
-								}
-							}
-						}
-					}
-				},
-				"summary": "Take order from the customer => Only Login Waiter is allowed",
-				"tags": [
-					"PMS - Waiter"
-				],
-				"security": [
-					{
-						"api_key": []
-					}
-				],
-				"parameters": [],
-				"requestBody": {
-					"required": true,
-					"content": {
-						"application/json": {
-							"schema": {
-								"$ref": "#/components/schemas/SaveReqOrder"
-							}
-						}
-					}
-				}
-			}
-		},
-		"/waiter/getMyOrderlist": {
-			"post": {
-				"operationId": "GetorderListByWaiterId",
-				"responses": {
-					"200": {
-						"description": "Ok",
-						"content": {
-							"application/json": {
-								"schema": {
-									"items": {
-										"$ref": "#/components/schemas/SaveUpdateResOrder"
-									},
-									"type": "array"
-								}
-							}
-						}
-					}
-				},
-				"summary": "Get All the orders taken by current waiter => Only Login Waiter is allowed",
-				"tags": [
-					"PMS - Waiter"
-				],
-				"security": [
-					{
-						"api_key": []
-					}
-				],
-				"parameters": []
-			}
-		},
-		"/waiter/GetBillByOrderId": {
-			"post": {
-				"operationId": "GetorderforBill",
-				"responses": {
-					"200": {
-						"description": "Ok",
-						"content": {
-							"application/json": {
-								"schema": {
-									"type": "number",
-									"format": "double"
-								}
-							}
-						}
-					}
-				},
-				"summary": "Enter order ID to get the bill => Only Login Waiter is allowed",
-				"tags": [
-					"PMS - Waiter"
-				],
-				"security": [
-					{
-						"api_key": []
-					}
-				],
-				"parameters": [],
-				"requestBody": {
-					"required": true,
-					"content": {
-						"application/json": {
-							"schema": {
-								"$ref": "#/components/schemas/GetOrder"
-							}
-						}
-					}
-				}
-			}
-		},
-		"/waiter/updateorder": {
-			"put": {
-				"operationId": "Updateorder",
-				"responses": {
-					"200": {
-						"description": "Ok",
-						"content": {
-							"application/json": {
-								"schema": {
-									"$ref": "#/components/schemas/SaveUpdateResOrder"
-								}
-							}
-						}
-					}
-				},
-				"summary": "Update Order by order Id => Only Login Waiter is allowed",
-				"tags": [
-					"PMS - Waiter"
-				],
-				"security": [
-					{
-						"api_key": []
-					}
-				],
-				"parameters": [],
-				"requestBody": {
-					"required": true,
-					"content": {
-						"application/json": {
-							"schema": {
-								"$ref": "#/components/schemas/UpdateReqOrder"
-							}
-						}
-					}
-				}
-			}
-		},
-		"/waiter/updateOrderToDelivered": {
-			"put": {
-				"operationId": "UpdateOrderToDelivered",
-				"responses": {
-					"200": {
-						"description": "product updated",
-						"content": {
-							"application/json": {
-								"schema": {
-									"$ref": "#/components/schemas/IORDER"
-								}
-							}
-						}
-					}
-				},
-				"summary": "ordate order status to Delivered => Only Login Waiter is allowed",
-				"tags": [
-					"PMS - Waiter"
-				],
-				"security": [
-					{
-						"api_key": []
-					}
-				],
-				"parameters": [],
-				"requestBody": {
-					"required": true,
-					"content": {
-						"application/json": {
-							"schema": {
-								"$ref": "#/components/schemas/updateOrder_readyOrDelivered"
-							}
-						}
-					}
-				}
-			}
-		},
-		"/waiter/getItemByID": {
-			"post": {
-				"operationId": "GetItem",
-				"responses": {
-					"200": {
-						"description": "Ok",
-						"content": {
-							"application/json": {
-								"schema": {
-									"$ref": "#/components/schemas/SaveUpdateResItem"
-								}
-							}
-						}
-					}
-				},
-				"summary": "Get Single Item By Item Id => Only Login Waiter is allowed",
-				"tags": [
-					"PMS - Waiter"
-				],
-				"security": [
-					{
-						"api_key": []
-					}
-				],
-				"parameters": [],
-				"requestBody": {
-					"required": true,
-					"content": {
-						"application/json": {
-							"schema": {
-								"$ref": "#/components/schemas/GetItem"
-							}
-						}
-					}
-				}
-			}
-		},
-		"/waiter/getMenu": {
-			"post": {
-				"operationId": "GetItemList",
-				"responses": {
-					"200": {
-						"description": "Ok",
-						"content": {
-							"application/json": {
-								"schema": {
-									"items": {
-										"$ref": "#/components/schemas/SaveUpdateResItem"
-									},
-									"type": "array"
-								}
-							}
-						}
-					}
-				},
-				"summary": "Get list of all the items => anyone is allowed",
-				"tags": [
-					"PMS - Waiter"
-				],
-				"security": [],
-				"parameters": []
-			}
-		},
-		"/waiter/getItemsbyPrice": {
-			"post": {
-				"operationId": "GetItemByPrice",
-				"responses": {
-					"200": {
-						"description": "Ok",
-						"content": {
-							"application/json": {
-								"schema": {
-									"items": {
-										"$ref": "#/components/schemas/SaveUpdateResItem"
-									},
-									"type": "array"
-								}
-							}
-						}
-					}
-				},
-				"summary": "Get list of all the items with spacific price=> anyone is allowed",
-				"tags": [
-					"PMS - Waiter"
-				],
-				"security": [
-					{
-						"api_key": []
-					}
-				],
-				"parameters": [],
-				"requestBody": {
-					"required": true,
-					"content": {
-						"application/json": {
-							"schema": {
-								"$ref": "#/components/schemas/getItemPrice"
+								"$ref": "#/components/schemas/SaveReqWaiter"
 							}
 						}
 					}
@@ -897,332 +1142,6 @@
 						"application/json": {
 							"schema": {
 								"$ref": "#/components/schemas/GetAdmin"
-							}
-						}
-					}
-				}
-			}
-		},
-		"/admin/Registerwaiter": {
-			"post": {
-				"operationId": "SaveWaiter",
-				"responses": {
-					"200": {
-						"description": "Ok",
-						"content": {
-							"application/json": {
-								"schema": {
-									"$ref": "#/components/schemas/SaveUpdateResWaiter"
-								}
-							}
-						}
-					}
-				},
-				"summary": "Register new waiter => Only Login admin is allowed",
-				"tags": [
-					"PMS - Admin"
-				],
-				"security": [
-					{
-						"api_key": []
-					}
-				],
-				"parameters": [],
-				"requestBody": {
-					"required": true,
-					"content": {
-						"application/json": {
-							"schema": {
-								"$ref": "#/components/schemas/SaveReqWaiter"
-							}
-						}
-					}
-				}
-			}
-		},
-		"/admin/deleteorder": {
-			"delete": {
-				"operationId": "Deletorder",
-				"responses": {
-					"200": {
-						"description": "product deleted",
-						"content": {
-							"application/json": {
-								"schema": {}
-							}
-						}
-					}
-				},
-				"summary": "Delete order by its ID => Only Login admin is allowed",
-				"tags": [
-					"PMS - Admin"
-				],
-				"security": [
-					{
-						"api_key": []
-					}
-				],
-				"parameters": [],
-				"requestBody": {
-					"required": true,
-					"content": {
-						"application/json": {
-							"schema": {
-								"$ref": "#/components/schemas/DeleteOrder"
-							}
-						}
-					}
-				}
-			}
-		},
-		"/admin/updateOrderToReady": {
-			"put": {
-				"operationId": "UpdateOrderToReady",
-				"responses": {
-					"200": {
-						"description": "product updated",
-						"content": {
-							"application/json": {
-								"schema": {}
-							}
-						}
-					}
-				},
-				"summary": "Update order to ready => Only Login admin is allowed",
-				"tags": [
-					"PMS - Admin"
-				],
-				"security": [
-					{
-						"api_key": []
-					}
-				],
-				"parameters": [],
-				"requestBody": {
-					"required": true,
-					"content": {
-						"application/json": {
-							"schema": {
-								"$ref": "#/components/schemas/updateOrder_readyOrDelivered"
-							}
-						}
-					}
-				}
-			}
-		},
-		"/admin/getorderlist": {
-			"post": {
-				"operationId": "GetorderList",
-				"responses": {
-					"200": {
-						"description": "Ok",
-						"content": {
-							"application/json": {
-								"schema": {
-									"items": {
-										"$ref": "#/components/schemas/SaveUpdateResOrder"
-									},
-									"type": "array"
-								}
-							}
-						}
-					}
-				},
-				"summary": "Get list of all the orders => Only Login admin is allowed",
-				"tags": [
-					"PMS - Admin"
-				],
-				"security": [
-					{
-						"api_key": []
-					}
-				],
-				"parameters": []
-			}
-		},
-		"/admin/getorderbyItemID": {
-			"post": {
-				"operationId": "SearchorderByproduct",
-				"responses": {
-					"200": {
-						"description": "Ok",
-						"content": {
-							"application/json": {
-								"schema": {
-									"items": {
-										"$ref": "#/components/schemas/SaveUpdateResOrder"
-									},
-									"type": "array"
-								}
-							}
-						}
-					}
-				},
-				"summary": "Get all the orders contain certain item => Only Login admin is allowed",
-				"tags": [
-					"PMS - Admin"
-				],
-				"security": [
-					{
-						"api_key": []
-					}
-				],
-				"parameters": [],
-				"requestBody": {
-					"required": true,
-					"content": {
-						"application/json": {
-							"schema": {
-								"$ref": "#/components/schemas/SearchReqOrder"
-							}
-						}
-					}
-				}
-			}
-		},
-		"/admin/getOrderByStatus": {
-			"post": {
-				"operationId": "GetorderByStatus",
-				"responses": {
-					"200": {
-						"description": "Ok",
-						"content": {
-							"application/json": {
-								"schema": {
-									"items": {
-										"$ref": "#/components/schemas/SaveUpdateResOrder"
-									},
-									"type": "array"
-								}
-							}
-						}
-					}
-				},
-				"summary": "Get Single Item By Item Id => Only Login Waiter is allowed",
-				"tags": [
-					"PMS - Admin"
-				],
-				"security": [
-					{
-						"api_key": []
-					}
-				],
-				"parameters": [],
-				"requestBody": {
-					"required": true,
-					"content": {
-						"application/json": {
-							"schema": {
-								"$ref": "#/components/schemas/GetOrderByStatus"
-							}
-						}
-					}
-				}
-			}
-		},
-		"/admin/saveItemInMenu": {
-			"post": {
-				"operationId": "SaveItem",
-				"responses": {
-					"200": {
-						"description": "Ok",
-						"content": {
-							"application/json": {
-								"schema": {
-									"$ref": "#/components/schemas/SaveUpdateResItem"
-								}
-							}
-						}
-					}
-				},
-				"summary": "Get Single Item By Item Id => Only Login Waiter is allowed",
-				"tags": [
-					"PMS - Admin"
-				],
-				"security": [
-					{
-						"api_key": []
-					}
-				],
-				"parameters": [],
-				"requestBody": {
-					"required": true,
-					"content": {
-						"application/json": {
-							"schema": {
-								"$ref": "#/components/schemas/SaveReqItem"
-							}
-						}
-					}
-				}
-			}
-		},
-		"/admin/updateItemInMenu": {
-			"put": {
-				"operationId": "UpdateItem",
-				"responses": {
-					"200": {
-						"description": "Ok",
-						"content": {
-							"application/json": {
-								"schema": {
-									"$ref": "#/components/schemas/SaveUpdateResItem"
-								}
-							}
-						}
-					}
-				},
-				"summary": "Get Single Item By Item Id => Only Login Waiter is allowed",
-				"tags": [
-					"PMS - Admin"
-				],
-				"security": [
-					{
-						"api_key": []
-					}
-				],
-				"parameters": [],
-				"requestBody": {
-					"required": true,
-					"content": {
-						"application/json": {
-							"schema": {
-								"$ref": "#/components/schemas/UpdateReqItem"
-							}
-						}
-					}
-				}
-			}
-		},
-		"/admin/deleteItem": {
-			"delete": {
-				"operationId": "DeletItem",
-				"responses": {
-					"200": {
-						"description": "product deleted",
-						"content": {
-							"application/json": {
-								"schema": {}
-							}
-						}
-					}
-				},
-				"summary": "Get Single Item By Item Id => Only Login Waiter is allowed",
-				"tags": [
-					"PMS - Admin"
-				],
-				"security": [
-					{
-						"api_key": []
-					}
-				],
-				"parameters": [],
-				"requestBody": {
-					"required": true,
-					"content": {
-						"application/json": {
-							"schema": {
-								"$ref": "#/components/schemas/DeleteItem"
 							}
 						}
 					}

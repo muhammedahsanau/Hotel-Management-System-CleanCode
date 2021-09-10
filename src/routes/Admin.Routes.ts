@@ -42,127 +42,52 @@ export class AdminRoutes {
 
 
   routes() {
-    this.router.delete("/deleteorder", AdminAuth, async (req, res, next) => {
-      try {
-        const delreq: DeleteOrder = req.body;
-        const Deleted_order = await new AdminController().deletorder(delreq);
-        res.status(200).json({
-          message: "order delivered & order deleted",
-        });
-      } catch (error) {
-        next(error);
-      }
-    });
+
+
+    // this.router.post("/saveItemInMenu", AdminAuth, async (req, res, next) => {
+    //   try {
+    //     const admin: SaveReqItem = req.body;
+    //     const newAdmin: SaveUpdateResItem =
+    //       await new AdminController().saveItem(admin);
+    //     res.status(200).json({
+    //       message: newAdmin,
+    //     });
+    //   } catch (error) {
+    //     next(error);
+    //   }
+    // });
 
 
 
-
-    this.router.put(
-      "/updateOrderToReady",
-      AdminAuth,
-      async (req, res, next) => {
-        try {
-          const delreq: updateOrder_readyOrDelivered = req.body;
-          const Deleted_order = await new AdminController().updateOrderToReady(
-            delreq
-          );
-          res.status(200).json({
-            message: "order updated to ready",
-          });
-        } catch (error) {
-          next(error);
-        }
-      }
-    );
+    // this.router.put("/updateItemInMenu", AdminAuth, async (req, res, next) => {
+    //   try {
+    //     const admin: UpdateReqItem = req.body;
+    //     const upadated_admin: SaveUpdateResItem =
+    //       await new AdminController().updateItem(admin);
+    //     const response = {
+    //       upadated_admin,
+    //     };
+    //     res.status(200).json({
+    //       message: response,
+    //     });
+    //   } catch (error) {
+    //     next(error);
+    //   }
+    // });
 
 
 
-    this.router.post("/getorderlist", AdminAuth, async (req, res, next) => {
-      try {
-        const adminList: SaveUpdateResOrder[] =
-          await new AdminController().getorderList();
-        res.status(200).json({
-          result: adminList,
-        });
-      } catch (error) {
-        next(error);
-      }
-    });
-
-
-
-    this.router.post("/getorderbyItemID", AdminAuth, async (req, res, next) => {
-      try {
-        const order: SearchReqOrder = req.body;
-        const OrderList: SaveUpdateResOrder[] =
-          await new AdminController().searchorderByproduct(order);
-        res.status(200).json({
-          result: OrderList,
-        });
-      } catch (error) {
-        next(error);
-      }
-    });
-
-
-
-    this.router.post("/getOrderByStatus", AdminAuth, async (req, res, next) => {
-      try {
-        const getreq: GetOrderByStatus = req.body;
-        const Order: SaveUpdateResOrder[] =
-          await new AdminController().getorderByStatus(getreq);
-        res.send(Order);
-      } catch (error) {
-        next(error);
-      }
-    });
-
-
-
-    this.router.post("/saveItemInMenu", AdminAuth, async (req, res, next) => {
-      try {
-        const admin: SaveReqItem = req.body;
-        const newAdmin: SaveUpdateResItem =
-          await new AdminController().saveItem(admin);
-        res.status(200).json({
-          message: newAdmin,
-        });
-      } catch (error) {
-        next(error);
-      }
-    });
-
-
-
-    this.router.put("/updateItemInMenu", AdminAuth, async (req, res, next) => {
-      try {
-        const admin: UpdateReqItem = req.body;
-        const upadated_admin: SaveUpdateResItem =
-          await new AdminController().updateItem(admin);
-        const response = {
-          upadated_admin,
-        };
-        res.status(200).json({
-          message: response,
-        });
-      } catch (error) {
-        next(error);
-      }
-    });
-
-
-
-    this.router.delete("/deleteItem", AdminAuth, async (req, res, next) => {
-      try {
-        const delreq: DeleteItem = req.body;
-        const Deleted_admin = await new AdminController().deletItem(delreq);
-        res.status(200).json({
-          message: "item deleted",
-        });
-      } catch (error) {
-        next(error);
-      }
-    });
+    // this.router.delete("/deleteItem", AdminAuth, async (req, res, next) => {
+    //   try {
+    //     const delreq: DeleteItem = req.body;
+    //     const Deleted_admin = await new AdminController().deletItem(delreq);
+    //     res.status(200).json({
+    //       message: "item deleted",
+    //     });
+    //   } catch (error) {
+    //     next(error);
+    //   }
+    // });
 
 
 
@@ -203,25 +128,24 @@ export class AdminRoutes {
 
 
 
-    this.router.post("/Registerwaiter", AdminAuth, async (req, res, next) => {
-      try {
-        const waiter: SaveReqWaiter = req.body;
-        const salt = await bcrypt.genSalt(10);
-        waiter.waiter_password = await bcrypt.hash(
-          waiter.waiter_password,
-          salt
-        );
-        var newAdmin: SaveUpdateResWaiter =
-          await new AdminController().saveWaiter(waiter);
-
-        res.status(200).json({
-          message: newAdmin,
-        });
-      } catch (error) {
-        next(error);
-      }
-    }
-    );
+    // this.router.post("/Registerwaiter", AdminAuth, async (req, res, next) => {
+    //   try {
+    //     const waiter: SaveReqWaiter = req.body;
+    //     const salt = await bcrypt.genSalt(10);
+    //     waiter.waiter_password = await bcrypt.hash(
+    //       waiter.waiter_password,
+    //       salt
+    //     );
+    //     var newAdmin: SaveUpdateResWaiter =
+    //       await new AdminController().saveWaiter(waiter);
+    //     res.status(200).json({
+    //       message: newAdmin,
+    //     });
+    //   } catch (error) {
+    //     next(error);
+    //   }
+    // }
+    // );
 
 
 

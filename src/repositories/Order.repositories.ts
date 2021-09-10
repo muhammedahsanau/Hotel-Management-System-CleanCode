@@ -26,19 +26,19 @@ export class MainOrder {
 
 
 
-  async GetOrder(id: string) {
-    const Order: IORDER | any = ORDERSchema.findById(id).populate(
-      "item",
-      "item_name item_price item_discription -_id"
-    );
+  // async GetOrder(id: string) {
+  //   const Order: IORDER | any = ORDERSchema.findById(id).populate(
+  //     "item",
+  //     "item_name item_price item_discription -_id"
+  //   );
 
 
 
-    return ORDERSchema.findById(id).populate(
-      "item",
-      "item_name item_price item_discription -_id"
-    );
-  }
+  //   return ORDERSchema.findById(id).populate(
+  //     "item",
+  //     "item_name item_price item_discription -_id"
+  //   );
+  // }
 
 
 
@@ -50,7 +50,7 @@ export class MainOrder {
 
 
 
-  deletOrder(_id: string) {
+  deleteOrder(_id: string) {
     return ORDERSchema.findByIdAndDelete(_id);
   }
 

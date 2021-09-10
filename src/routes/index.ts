@@ -12,10 +12,10 @@ export class MainRouter {
     }
     routes() {
   
-    
+      this.router.use('/orders',OrderRoutesApi)
       this.router.use('/admin',AdminRoutesApi)
       this.router.use('/waiter',WaiterRoutesApi);
-   
+      this.router.use('/Items',ItemRoutesApi);
     }
 
 

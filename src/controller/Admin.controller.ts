@@ -50,116 +50,109 @@ export class AdminController {
 
 
 
-  /**@summary Register new waiter => Only Login admin is allowed */
-  @Security('api_key')
-  @Post('/Registerwaiter')
-  async saveWaiter(@Body() user: SaveReqWaiter): Promise<SaveUpdateResWaiter> {
-    const new_user:IWAITER = await new MainWaiter().savewaiter(<IWAITER>(user));
-    return <SaveUpdateResWaiter>(new_user);
-  }
+  // /**@summary Register new waiter => Only Login admin is allowed */
+  // @Security('api_key')
+  // @Post('/Registerwaiter')
+  // async saveWaiter(@Body() user: SaveReqWaiter): Promise<SaveUpdateResWaiter> {
+  //   const new_user:IWAITER = await new MainWaiter().savewaiter(<IWAITER>(user));
+  //   return <SaveUpdateResWaiter>(new_user);
+  // }
 
 
 
-  /**@summary Delete order by its ID => Only Login admin is allowed */
-  @Security('api_key') 
-  @Delete('/deleteorder')
-  @SuccessResponse("200","product deleted")
-  async deletorder(@Body() delreq: DeleteOrder): Promise<any> {
-    return await new MainOrder().deletOrder(delreq.id);
-  }
+ 
 
 
-
-  /**@summary Update order to ready => Only Login admin is allowed */
-  @Security('api_key') 
-  @Put('/updateOrderToReady')
-  @SuccessResponse("200","product updated")
-  async updateOrderToReady(@Body() delreq: updateOrder_readyOrDelivered): Promise<any> {
-
-    return await new MainOrder().update_toReady(delreq.id);
-  }
-
-
-
-  /**@summary Get list of all the orders => Only Login admin is allowed */
-  @Security('api_key') 
-  @Post('/getorderlist')
-  async getorderList(): Promise<SaveUpdateResOrder[]> {
-    const admin: IORDER[] = await new MainOrder().getOrderslist();
-    if (admin === null) throw new CustomeError(404, 'Order not found');
-
-    return <SaveUpdateResOrder[]>(admin);
-  } 
-  
-  
-  
-  /**@summary Get all the orders contain certain item => Only Login admin is allowed */
-  @Security('api_key') 
-  @Post('/getorderbyItemID')
-  async searchorderByproduct(@Body() getreq:SearchReqOrder): Promise<SaveUpdateResOrder[]> {
-    const admin: IORDER[] = await new MainOrder().getOrdersbyProductID(getreq.item);
-
-    return <SaveUpdateResOrder[]>(admin);
-  }
-
-
-
-  // /** 
-  // @summary Get Single Item By Item Id => Only Login Waiter is allowed 
-  // */
-  // //get order by quantity
+  // /**@summary Update order to ready => Only Login admin is allowed */
   // @Security('api_key') 
-  // @Post('/getorderbyOrderQuantity')
-  // async searchorderByquantity(@Body() getreq:SearchReqQuantity): Promise<SaveUpdateResOrder[]> {
-  //   const admin: IORDER[] = await new MainOrder().getOrdersbyOrderQuantity(getreq.o_quantity);
+  // @Put('/updateOrderToReady')
+  // @SuccessResponse("200","product updated")
+  // async updateOrderToReady(@Body() delreq: updateOrder_readyOrDelivered): Promise<any> {
+
+  //   return await new MainOrder().update_toReady(delreq.id);
+  // }
+
+
+
+  // /**@summary Get list of all the orders => Only Login admin is allowed */
+  // @Security('api_key') 
+  // @Post('/getorderlist')
+  // async getorderList(): Promise<SaveUpdateResOrder[]> {
+  //   const admin: IORDER[] = await new MainOrder().getOrderslist();
+  //   if (admin === null) throw new CustomeError(404, 'Order not found');
+
+  //   return <SaveUpdateResOrder[]>(admin);
+  // } 
+  
+  
+  
+  // /**@summary Get all the orders contain certain item => Only Login admin is allowed */
+  // @Security('api_key') 
+  // @Post('/getorderbyItemID')
+  // async searchorderByproduct(@Body() getreq:SearchReqOrder): Promise<SaveUpdateResOrder[]> {
+  //   const admin: IORDER[] = await new MainOrder().getOrdersbyProductID(getreq.item);
 
   //   return <SaveUpdateResOrder[]>(admin);
   // }
 
 
 
-  /** @summary Get Single Item By Item Id => Only Login Waiter is allowed */
-  @Security('api_key')
-  @Post("/getOrderByStatus")
-  async getorderByStatus(@Body() getreq:GetOrderByStatus): Promise<SaveUpdateResOrder[]> {
-    const admin:IORDER[]= await new MainOrder().getOrderByStatus(getreq.o_status);
-    if (admin === null) throw new CustomeError(404, 'Order not found');
+  // // /** 
+  // // @summary Get Single Item By Item Id => Only Login Waiter is allowed 
+  // // */
+  // // //get order by quantity
+  // // @Security('api_key') 
+  // // @Post('/getorderbyOrderQuantity')
+  // // async searchorderByquantity(@Body() getreq:SearchReqQuantity): Promise<SaveUpdateResOrder[]> {
+  // //   const admin: IORDER[] = await new MainOrder().getOrdersbyOrderQuantity(getreq.o_quantity);
 
-    return <SaveUpdateResOrder[]>admin;
-  }
-
-
-
-  /**@summary Get Single Item By Item Id => Only Login Waiter is allowed */
-  @Security('api_key') 
-  @Post('/saveItemInMenu')
-  async saveItem(@Body() admin: SaveReqItem): Promise<SaveUpdateResItem> {
-    const new_admin:IITEM = await new MainItem().saveItem(<IITEM>(admin));
-    return <SaveUpdateResItem>(new_admin);
-  }
+  // //   return <SaveUpdateResOrder[]>(admin);
+  // // }
 
 
 
-  /** @summary Get Single Item By Item Id => Only Login Waiter is allowed */
-  @Security('api_key') 
-  @Put('/updateItemInMenu')
-    async updateItem(@Body() admin: UpdateReqItem): Promise<SaveUpdateResItem> {
-      const update_admin = await new MainItem().updateItem(<IITEM>(admin));
-      if (update_admin === null)
-        throw new CustomeError(400, 'product not updated');
+  // /** @summary Get Single Item By Item Id => Only Login Waiter is allowed */
+  // @Security('api_key')
+  // @Post("/getOrderByStatus")
+  // async getorderByStatus(@Body() getreq:GetOrderByStatus): Promise<SaveUpdateResOrder[]> {
+  //   const admin:IORDER[]= await new MainOrder().getOrderByStatus(getreq.o_status);
+  //   if (admin === null) throw new CustomeError(404, 'Order not found');
 
-      return <SaveUpdateResItem>update_admin;
-  }
-
+  //   return <SaveUpdateResOrder[]>admin;
+  // }
 
 
-    /**@summary Get Single Item By Item Id => Only Login Waiter is allowed */
-    @Security('api_key') 
-    @Delete('/deleteItem')
-    @SuccessResponse("200","product deleted")
-    async deletItem(@Body() delreq: DeleteItem): Promise<any> {
 
-      return await new MainItem().deletItem(delreq.id);
-    }
+  // /**@summary Get Single Item By Item Id => Only Login Waiter is allowed */
+  // @Security('api_key') 
+  // @Post('/saveItemInMenu')
+  // async saveItem(@Body() admin: SaveReqItem): Promise<SaveUpdateResItem> {
+  //   const new_admin:IITEM = await new MainItem().saveItem(<IITEM>(admin));
+  //   return <SaveUpdateResItem>(new_admin);
+  // }
+
+
+
+  // /** @summary Get Single Item By Item Id => Only Login Waiter is allowed */
+  // @Security('api_key') 
+  // @Put('/updateItemInMenu')
+  //   async updateItem(@Body() admin: UpdateReqItem): Promise<SaveUpdateResItem> {
+  //     const update_admin = await new MainItem().updateItem(<IITEM>(admin));
+  //     if (update_admin === null)
+  //       throw new CustomeError(400, 'product not updated');
+
+  //     return <SaveUpdateResItem>update_admin;
+  // }
+
+
+
+  //   /**@summary Get Single Item By Item Id => Only Login Waiter is allowed */
+  //   @Security('api_key') 
+  //   @Delete('/deleteItem')
+  //   @SuccessResponse("200","product deleted")
+  //   async deletItem(@Body() delreq: DeleteItem): Promise<any> {
+
+  //     return await new MainItem().deletItem(delreq.id);
+  //   }
     
 }

@@ -3,7 +3,7 @@ require('dotenv').config()
 module.exports= function (req:any,res:any,next:any){
     const authHeader = req.header('Authorization')
     const token = authHeader && authHeader.split(' ')[1]
-    if (!token) {
+      if (!token) {
         return res.sendStatus(401)
     }
     try{
